@@ -7,5 +7,4 @@
   (.requestAnimationFrame js/window f))
 
 (defn render [signal elem]
-
   )
