@@ -1,1 +1,1 @@
-# clojurescript-signals
+# signal tranducers

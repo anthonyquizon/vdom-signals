@@ -1,4 +1,4 @@
-(ns clojurescript-signals.dom
+(ns vdom-signals.dom
   (:require))
 
 (defn animate
