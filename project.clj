@@ -1,4 +1,4 @@
-(defproject vdom-signal "0.1.0-SNAPSHOT"
+(defproject vdom-signals "0.1.0-SNAPSHOT"
   :description "Virtual DOM with signals"
   :url "https://github.com/anthoq88/vdom-signals"
   :dependencies [[org.clojure/clojure "1.7.0"]
@@ -17,7 +17,7 @@
               [{:id "dev"
                 :source-paths ["src"]
                 :figwheel true
-                :compiler {:main vdom-signal.core
+                :compiler {:main vdom-signals.core
                            :asset-path "/js/compiled/out"
                            :output-to "resources/public/js/compiled/vdom-signals.js"
                            :output-dir "resources/public/js/compiled/out"

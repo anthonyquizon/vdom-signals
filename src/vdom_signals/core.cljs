@@ -3,10 +3,12 @@
   (:require [goog.dom :as gdom]
             [goog.events :as gevents]
             [cljs.core.async :as async :refer [>! <!]]
-            [vdom-signal.dom :as dom]))
+            [vdom-signals.dom :as dom])
+  (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
 (enable-console-print!)
 
+;; macro defsig -> automatically called?
 ;; TODO transducers
 
 (defn animation-frames
@@ -14,17 +16,38 @@
   []
   (let [ch (async/chan)]
     (dom/animate (fn tick [t]
-               (async/put! ch t)
-               (dom/animate tick)))
+                   (async/put! ch t)
+                   (dom/animate tick)))
     ch))
 
-;; (defn sample-on [sample-ch value-ch]
-;;   (let [ch (async/chan)
-;;         sample (async/take! sample-ch)
-;;         value (async/take! value-ch)]
-;;     (async/put! ch value)
-;;     ch))
+(defn sample-on [sample-ch value-ch]
+  (let [ch (async/chan)]
+    (go-loop 
+      []
+      (let [sample (<! sample-ch)
+            value (<! value-ch)]
+        (>! ch value)
+        (recur)))
+    ch))
+
+(defn map [f signal]
+  (let [ch (async/chan)]
+    (go-loop 
+      []
+      (let [value (<! signal)]
+        (>! ch (f value)))
+      (recur))
+    ch))
 
 
-;; print every second
+;(sample-on animation-frames (fn))
+(def foo (map (fn [a] (print "hello") a) (animation-frames)))
+(go-loop 
+  []
+  (print (<! foo))
+  (print "test")
+  (recur))
+
+
+;;render map
 
