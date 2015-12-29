@@ -31,23 +31,13 @@
     ch))
 
 (defn map [f signal]
-  (let [ch (async/chan)]
+  (let [ch (async/chan)] ;;TODO core async map
     (go-loop 
       []
       (let [value (<! signal)]
         (>! ch (f value)))
       (recur))
     ch))
-
-
-;(sample-on animation-frames (fn))
-(def foo (map (fn [a] (print "hello") a) (animation-frames)))
-(go-loop 
-  []
-  (print (<! foo))
-  (print "test")
-  (recur))
-
 
 ;;render map
 
