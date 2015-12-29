@@ -1,8 +1,6 @@
 (ns ^:figwheel-always vdom-signals.core
   (:refer-clojure :exclude [map merge])
-  (:require [goog.dom :as gdom]
-            [goog.events :as gevents]
-            [cljs.core.async :as async :refer [>! <!]]
+  (:require [cljs.core.async :as async :refer [>! <!]]
             [vdom-signals.dom :as dom])
   (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
@@ -39,5 +37,5 @@
       (recur))
     ch))
 
-;;render map
-
+;;TODO move to unit tests folde
+(dom/render! (map (fn [t] [:div {} (str "hello!:Wooo!OooWOo " t)]) (animation-frames)) (.getElementById js/document "app"))
