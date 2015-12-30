@@ -1,4 +1,4 @@
-(ns vdom-signals.dom
+(ns virtual-dom-signals.dom
   (:require [goog.dom :as gdom]
             [goog.events :as gevents]
             [cljsjs.virtual-dom]

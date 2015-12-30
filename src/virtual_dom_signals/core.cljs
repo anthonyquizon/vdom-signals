@@ -1,7 +1,7 @@
-(ns ^:figwheel-always vdom-signals.core
+(ns ^:figwheel-always virtual-dom-signals.core
   (:refer-clojure :exclude [map merge])
   (:require [cljs.core.async :as async :refer [>! <!]]
-            [vdom-signals.dom :as dom])
+            [virtual-dom-signals.dom :as dom])
   (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
 (enable-console-print!)
